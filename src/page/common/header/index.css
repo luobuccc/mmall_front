@@ -8,6 +8,7 @@
     font-size: 36px;
     color: #c60023;
     font-weight: bold;
+    text-decoration: none;
 }
 
 .header .search-con {
@@ -28,4 +29,14 @@
     position: absolute;
     height: 40px;
     widows: 80px;
+}
+
+.crumb {
+    margin-bottom: 15px;
+    height: 50px;
+    line-height: 50px;
+    background: #eee;
+    color: #888;
+    font-size: 14px;
+    border-top: 2px solid #c60023;
 }
