@@ -1,8 +1,5 @@
-/**
- * Created by weimin on 2017/7/13 0013.
- */
-
 'use strict';
+
 require('./index.css');
 require('page/common/nav/index.js');
 require('page/common/index.js');
