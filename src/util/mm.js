@@ -67,7 +67,7 @@ var _mm = {
         }
         //手机验证
         if ('phone' === type) {
-            return /^1d{10}$/.test(value);
+            return /^[1][3,4,5,7,8][0-9]{9}$/.test(value);
         }
         //邮箱验证
         if ('email' === type) {

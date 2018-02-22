@@ -4,7 +4,7 @@
         <span class="text">{{username}}</span>
     </div>
     <div class="form-line">
-        <span class="label">电 话：</span>
+        <span class="label">手 机：</span>
         <input class="input" id="phone" autocomplete="off" value="{{phone}}" />
     </div>
     <div class="form-line">
