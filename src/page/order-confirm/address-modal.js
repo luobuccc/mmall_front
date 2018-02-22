@@ -1,25 +1,22 @@
-/**
- * Created by weimin on 2017/7/13 0013.
- */
 
 'use strict';
-var _mm                  = require('util/mm.js');
-var _cities              = require('util/cities/index.js');
-var _address             = require('service/address-service.js');
+var _mm = require('util/mm.js');
+var _cities = require('util/cities/index.js');
+var _address = require('service/address-service.js');
 var templateAddressModal = require('./address-modal.string');
 
 var addressModal = {
-    show           : function (option) {
+    show: function (option) {
         // option 绑定
-        this.option      = option;
+        this.option = option;
         this.option.data = option.data || {};
-        this.$modalWrap  = $('.modal-wrap');
+        this.$modalWrap = $('.modal-wrap');
         //渲染页面
         this.loadModal();
         //绑定事件
         this.bindEvent();
     },
-    bindEvent      : function () {
+    bindEvent: function () {
         var _this = this;
         //城市和省份的二级联动
         this.$modalWrap.find('#receiver-province').change(function () {
@@ -29,14 +26,14 @@ var addressModal = {
         //提交收货地址
         this.$modalWrap.find('.address-btn').click(function () {
             var receiverInfo = _this.getReceiverInfo(),
-                isUpdate     = _this.option.isUpdate;
+                isUpdate = _this.option.isUpdate;
             // 使用新地址且验证通过
             if (!isUpdate && receiverInfo.status) {
                 _address.save(receiverInfo.data, function (res) {
                     _mm.successTips('地址添加成功');
                     _this.hide();
-                    typeof _this.option.onSuccess === 'function'
-                    && _this.option.onSuccess(res);
+                    typeof _this.option.onSuccess === 'function' &&
+                        _this.option.onSuccess(res);
                 }, function (errMsg) {
                     _mm.errorTips(errMsg);
                 });
@@ -45,8 +42,8 @@ var addressModal = {
                 _address.update(receiverInfo.data, function (res) {
                     _mm.successTips('地址修改成功');
                     _this.hide();
-                    typeof _this.option.onSuccess === 'function'
-                    && _this.option.onSuccess(res);
+                    typeof _this.option.onSuccess === 'function' &&
+                        _this.option.onSuccess(res);
                 }, function (errMsg) {
                     _mm.errorTips(errMsg);
                 });
@@ -64,18 +61,18 @@ var addressModal = {
             _this.hide();
         });
     },
-    loadModal      : function () {
+    loadModal: function () {
         var addressModalHtml = _mm.renderHtml(templateAddressModal, {
             isUpdate: this.option.isUpdate,
-            data    : this.option.data
+            data: this.option.data
         });
         this.$modalWrap.html(addressModalHtml);
         // 加载省份
         this.loadProvince();
     },
     //加载省份信息
-    loadProvince   : function () {
-        var provinces       = _cities.getProvinces() || [],
+    loadProvince: function () {
+        var provinces = _cities.getProvinces() || [],
             $provinceSelect = this.$modalWrap.find('#receiver-province');
         $provinceSelect.html(this.getSelectOption(provinces));
         // 如果是更新地址，并且有省份信息，做省份的回填
@@ -85,8 +82,8 @@ var addressModal = {
         }
     },
     //加载城市信息
-    loadCities     : function (provinceName) {
-        var cities      = _cities.getCities(provinceName) || [],
+    loadCities: function (provinceName) {
+        var cities = _cities.getCities(provinceName) || [],
             $citySelect = this.$modalWrap.find('#receiver-city');
         $citySelect.html(this.getSelectOption(cities));
         // 如果是更新地址，并且有城市信息，做城市的回填
@@ -96,16 +93,16 @@ var addressModal = {
     },
     //获取表单收件人信息的方式，并作表单验证
     getReceiverInfo: function () {
-        var receiverInfo              = {},
-            result                    = {
+        var receiverInfo = {},
+            result = {
                 status: false
             };
-        receiverInfo.receiverName     = $.trim(this.$modalWrap.find('#receiver-name').val());
+        receiverInfo.receiverName = $.trim(this.$modalWrap.find('#receiver-name').val());
         receiverInfo.receiverProvince = this.$modalWrap.find('#receiver-province').val();
-        receiverInfo.receiverCity     = this.$modalWrap.find('#receiver-city').val();
-        receiverInfo.receiverAddress  = $.trim(this.$modalWrap.find('#receiver-address').val());
-        receiverInfo.receiverPhone    = $.trim(this.$modalWrap.find('#receiver-phone').val());
-        receiverInfo.receiverZip      = $.trim(this.$modalWrap.find('#receiver-zip').val());
+        receiverInfo.receiverCity = this.$modalWrap.find('#receiver-city').val();
+        receiverInfo.receiverAddress = $.trim(this.$modalWrap.find('#receiver-address').val());
+        receiverInfo.receiverPhone = $.trim(this.$modalWrap.find('#receiver-phone').val());
+        receiverInfo.receiverZip = $.trim(this.$modalWrap.find('#receiver-zip').val());
 
         if (this.option.isUpdate) {
             receiverInfo.id = this.$modalWrap.find('#receiver-id').val();
@@ -124,7 +121,7 @@ var addressModal = {
         } else {
             //验证均通过
             result.status = true;
-            result.data   = receiverInfo;
+            result.data = receiverInfo;
         }
         return result;
     },
@@ -142,4 +139,4 @@ var addressModal = {
         this.$modalWrap.empty();
     }
 };
-module.exports   = addressModal;
+module.exports = addressModal;

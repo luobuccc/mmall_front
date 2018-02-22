@@ -1,30 +1,26 @@
-/**
- * Created by weimin on 2017/7/14 0014.
- */
-
 'use strict';
 require('./index.css');
 require('page/common/nav/index.js');
 require('page/common/header/index.js');
-var _mm           = require('util/mm.js');
-var _payment      = require('service/payment-service.js');
+var _mm = require('util/mm.js');
+var _payment = require('service/payment-service.js');
 var templateIndex = require('./index.string');
 
 var page = {
-    data      : {
+    data: {
         orderNumber: _mm.getUrlParam('orderNumber')
     },
-    init      : function () {
+    init: function () {
         this.onLoad();
     },
-    onLoad    : function () {
+    onLoad: function () {
         this.loadPaymentInfo();
     },
-    // 加载订单 数据
+    // 加载订单数据
     loadPaymentInfo: function () {
-        var _this           = this,
+        var _this = this,
             paymentHtml = '',
-            $pageWrap        = $('.page-wrap');
+            $pageWrap = $('.page-wrap');
         $pageWrap.html('<div class="loading"></div>');
         _payment.getPaymentInfo(this.data.orderNumber, function (res) {
             //渲染html
@@ -36,15 +32,14 @@ var page = {
             $pageWrap.html('<p class="err-tip">' + errMsg + '</p>');
         });
     },
-    listenOrderStatus:function () {
+    listenOrderStatus: function () {
         var _this = this;
         this.paymentTimer = window.setInterval(function () {
-            _payment.getPaymentStatus(_this.orderNumber,function (res) {
-                if(res == true){
-                    window.location.href
-                        = './result.html?type=payment&orderNumber=' + _this.data.orderNumber;
+            _payment.getPaymentStatus(_this.orderNumber, function (res) {
+                if (res == true) {
+                    window.location.href = './result.html?type=payment&orderNumber=' + _this.data.orderNumber;
                 }
-            },function (errMsg) {
+            }, function (errMsg) {
 
             })
         })

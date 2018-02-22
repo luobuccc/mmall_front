@@ -10,7 +10,7 @@
                     {{^allChecked}}
                     <input type="checkbox" class="cart-select-all" />
                     {{/allChecked}}
-                    <span>全选</span>
+                    <span class="cart-label cart-span">全选</span>
                 </label>
             </th>
             <th class="cart-cell cell-info">商品信息</th>

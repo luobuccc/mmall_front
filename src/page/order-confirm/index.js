@@ -7,26 +7,26 @@
 require('./index.css');
 require('page/common/header/index.js');
 require('page/common/nav/index.js');
-var _mm             = require('util/mm.js');
-var _order          = require('service/order-service.js');
-var _address        = require('service/address-service.js');
+var _mm = require('util/mm.js');
+var _order = require('service/order-service.js');
+var _address = require('service/address-service.js');
 var templateAddress = require('./address-list.string');
 var templateProduct = require('./product-list.string');
-var addressModal    = require('./address-modal.js');
+var addressModal = require('./address-modal.js');
 
 var page = {
-    data           : {
+    data: {
         selectedAddressId: null
     },
-    init           : function () {
+    init: function () {
         this.onLoad();
         this.bindEvent();
     },
-    onLoad         : function () {
+    onLoad: function () {
         this.loadAddressList();
         this.loadProductList();
     },
-    bindEvent      : function () {
+    bindEvent: function () {
         var _this = this;
         // 地址的选择
         $(document).on('click', '.address-item', function () {
@@ -52,7 +52,7 @@ var page = {
         // 添加地址
         $(document).on('click', '.address-add', function () {
             addressModal.show({
-                isUpdate : false,
+                isUpdate: false,
                 onSuccess: function () {
                     _this.loadAddressList();
                 }
@@ -64,8 +64,8 @@ var page = {
             var shippingId = $(this).parents('.address-item').data('id');
             _address.getAddress(shippingId, function (res) {
                 addressModal.show({
-                    isUpdate : true,
-                    data     : res,
+                    isUpdate: true,
+                    data: res,
                     onSuccess: function () {
                         _this.loadAddressList();
                     }
@@ -101,7 +101,7 @@ var page = {
         });
     },
     // 处理地址列表中选中状态
-    addressFilter  : function (data) {
+    addressFilter: function (data) {
         if (this.data.selectedAddressId) {
             var selectedAddressIdFlag = false;
             for (var i = 0, length = data.list.length; i < length; i++) {
@@ -129,6 +129,7 @@ var page = {
         });
     }
 };
+
 $(function () {
     page.init();
 });

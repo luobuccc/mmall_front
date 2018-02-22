@@ -5,11 +5,13 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 //环境变量配置 dev/online
 var WEBPACK_ENV = process.env.WEBPACK_ENV || 'dev';
 console.log(WEBPACK_ENV);
+
 //获取html-webpack-plugin参数
 var getHtmlConfig = function (name, title) {
     return {
         template: './src/view/' + name + '.html',
         filename: 'view/' + name + '.html',
+        favicon: './favicon.ico',
         title: title,
         inject: true,
         hash: true,
@@ -38,8 +40,8 @@ var config = {
         "payment": ["./src/./page/payment/index.js"]
     },
     output: {
-        path: './dist',
-        publicPath: '/dist/',
+        path: __dirname + '/dist/',
+        publicPath: 'dev' === WEBPACK_ENV ? '/dist/' : '/dist/', //替换线上地址
         filename: 'js/[name].js'
     },
     externals: {
@@ -56,7 +58,11 @@ var config = {
             },
             {
                 test: /\.string$/,
-                loader: 'html-loader'
+                loader: 'html-loader',
+                query: {
+                    minimize: true,
+                    removeAttributeQuotes: false
+                }
             }
         ]
     },
@@ -91,14 +97,15 @@ var config = {
         new HtmlWebpackPlugin(getHtmlConfig('detail', '商品详情页')),
         new HtmlWebpackPlugin(getHtmlConfig('cart', '购物车')),
         new HtmlWebpackPlugin(getHtmlConfig('about', '关于我们')),
-
         new HtmlWebpackPlugin(getHtmlConfig("order-confirm", "订单确认")),
         new HtmlWebpackPlugin(getHtmlConfig("order-list", "订单列表")),
         new HtmlWebpackPlugin(getHtmlConfig("order-detail", "订单详情")),
         new HtmlWebpackPlugin(getHtmlConfig("payment", "支付")),
     ]
 };
+
 if ('dev' === WEBPACK_ENV) {
     config.entry.common.push('webpack-dev-server/client?http://localhost:8088/');
 }
+
 module.exports = config;
