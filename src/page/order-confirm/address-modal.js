@@ -1,4 +1,3 @@
-
 'use strict';
 var _mm = require('util/mm.js');
 var _cities = require('util/cities/index.js');

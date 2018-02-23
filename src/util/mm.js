@@ -1,7 +1,5 @@
 'use strict'
-
 var Hogan = require('hogan.js');
-
 var conf = {
     serverHost: ''
 }

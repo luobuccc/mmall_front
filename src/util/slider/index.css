@@ -1,21 +1,20 @@
-/*
-* @Author: Rosen
-* @Date:   2017-05-26 18:19:21
-* @Last Modified by:   Rosen
-* @Last Modified time: 2017-05-26 19:12:42
-*/
 /* banner */
-.banner{
-    position: relative; 
-    overflow: auto; 
+
+.banner {
+    position: relative;
+    overflow: auto;
 }
-.banner li { 
-    list-style: none; 
+
+.banner li {
+    list-style: none;
 }
-.banner ul li { 
-    float: left; 
+
+.banner ul li {
+    float: left;
 }
+
 /* 引导的小圆点 */
+
 .banner .dots {
     position: absolute;
     left: 0;
@@ -23,6 +22,7 @@
     bottom: 20px;
     text-align: center;
 }
+
 .banner .dots li {
     display: inline-block;
     width: 10px;
@@ -37,6 +37,7 @@
     -moz-transition: background .5s, opacity .5s;
     transition: background .5s, opacity .5s;
 }
+
 .banner .dots li.active {
     background: #fff;
     opacity: 1;

@@ -17,7 +17,7 @@
  }
 
  .cart-table .cell-check {
-     width: 6%;
+     width: 8%;
      text-align: left;
      padding-left: 20px;
  }
@@ -81,7 +81,7 @@
  }
 
  .cart-table .cell-total {
-     width: 14%;
+     width: 12%;
      text-align: center;
      font-weight: bold;
  }

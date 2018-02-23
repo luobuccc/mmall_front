@@ -1,7 +1,5 @@
 'use strict';
-
 require('./index.css');
-
 var _mm = require('util/mm.js');
 
 // 通用页面头部

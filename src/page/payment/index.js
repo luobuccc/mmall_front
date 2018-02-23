@@ -42,7 +42,7 @@ var page = {
             }, function (errMsg) {
 
             })
-        })
+        }, 5e3);
     }
 };
 $(function () {

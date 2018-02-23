@@ -1,5 +1,4 @@
 'use strict';
-
 require('./index.css');
 var _mm = require('util/mm.js');
 var _user = require('service/user-service.js');

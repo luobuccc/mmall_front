@@ -1,5 +1,4 @@
 'use strict';
-
 require('./index.css');
 require('page/common/nav-simple/index.js');
 var _mm = require('util/mm.js');
@@ -25,7 +24,7 @@ var page = {
         $('#username').blur(function () {
             var username = $.trim($(this.val()));
             //用户名为空
-            if(!username){
+            if (!username) {
                 return;
             }
             //异步验证
