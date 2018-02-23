@@ -9,7 +9,7 @@
             <div class="text-line">
                 <span class="text">
                     收件人：
-                    {{receiverName}}
+                    {{receiveName}}
                     {{shippingVo.receiverProvince}}
                     {{shippingVo.receiverCity}}
                     {{shippingVo.receiverAddress}}

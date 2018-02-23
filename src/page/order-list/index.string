@@ -17,7 +17,7 @@
                                        class="link order-num" target="_blank">{{orderNo}}</a>
                                 </span>
             <span class="order-text">{{createTime}}</span>
-            <span class="order-text">收件人：{{receiverName}}</span>
+            <span class="order-text">收件人：{{receiveName}}</span>
             <span class="order-text">订单状态：{{statusDesc}}</span>
             <span class="order-text">
                                     <span>订单总价：</span>
